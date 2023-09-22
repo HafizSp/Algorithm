@@ -18,13 +18,13 @@ int knapsack(int weights[], int profits[], int W, int n)
             else if (w < weights[i])
                 dp[i][w] = dp[i - 1][w];
             else
-                dp[i][w] = max(profits[i] + dp[i - 1][w - weights[i]], dp[i - 1][w]);
+                dp[i][w] = max(dp[i - 1][w], profits[i] + dp[i - 1][w - weights[i]]);
 
             printf("%d\t", dp[i][w]);
         }
         printf("\n");
     }
-    int includedItems[n + 1];
+    // int includedItems[n + 1];
     // int w = W;
     // for (int i = n; i > 0; i--)
     // {
@@ -47,6 +47,30 @@ int knapsack(int weights[], int profits[], int W, int n)
 
     return dp[n][W];
 }
+
+// int ZeroOneKnapsack(int weights[], int profits[], int maxWeight, int n)
+// {
+//     int dp[n + 1][maxWeight + 1];
+//     for (int i = 0; i <= n; i++)
+//     {
+//         for (int w = 0; w <= maxWeight; w++)
+//         {
+//             if (i == 0 || w == 0)
+//             {
+//                 dp[i][w] = 0;
+//             }
+//             else if (w < weights[i])
+//             {
+//                 dp[i][w] = dp[i - 1][w];
+//             }
+//             else
+//             {
+//                 dp[i][w] = max(dp[i - 1][w], profits[i] + dp[i - 1][w - weights[i]]);
+//             }
+//         }
+//     }
+//     return dp[n][maxWeight];
+// }
 
 int main()
 {
